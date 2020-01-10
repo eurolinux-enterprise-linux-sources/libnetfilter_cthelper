@@ -1,15 +1,12 @@
 Name:           libnetfilter_cthelper
 Version:        1.0.0
-Release:        10%{?dist}.1
+Release:        8%{?dist}
 Summary:        User-space infrastructure for connection tracking helpers
 Group:          System Environment/Libraries
 License:        GPLv2
 URL:            http://www.netfilter.org/projects/libnetfilter_cthelper/index.html
 Source0:        http://www.netfilter.org/projects/libnetfilter_cthelper/files/libnetfilter_cthelper-%{version}.tar.bz2
 BuildRequires:  libmnl-devel >= 1.0.0, pkgconfig, kernel-headers
-
-Patch1:		libnetfilter_cthelper-1.0.0-cleanup.patch
-Patch2:		0002-examples-fix-double-free-in-nftc-helper-add.patch
 
 %description
 This library provides the infrastructure for the user-space helper
@@ -28,8 +25,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-%patch1 -p1
-%patch2 -p1
 
 %build
 %configure --disable-static
@@ -54,15 +49,6 @@ find $RPM_BUILD_ROOT -type f -name '*.la' -exec rm -f {} ';'
 %{_libdir}/*.so
 
 %changelog
-* Fri Sep 06 2019 Phil Sutter <psutter@redhat.com> - 1.0.0-10.1
-- Rebuild for inclusion into s390x.
-
-* Mon Mar 11 2019 Phil Sutter - 1.0.0-10
-- Resolves: rhbz#1256215 - double free happened when nfct_helper_free() [...]
-
-* Mon Jul 25 2016 Paul Wouters <pwouters@redhat.com> - 1.0.0-9
-- Resolves: rhbz#1252344 Use after free in nfct_helper_free
-
 * Wed Oct 14 2015 Paul Wouters <pwouters@redhat.com> - 1.0.0-8
 - Resolves: rhbz#1233222 (do not include examples/ as these become arch specific)
 
