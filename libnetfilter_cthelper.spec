@@ -1,6 +1,6 @@
 Name:           libnetfilter_cthelper
 Version:        1.0.0
-Release:        10%{?dist}
+Release:        10%{?dist}.1
 Summary:        User-space infrastructure for connection tracking helpers
 Group:          System Environment/Libraries
 License:        GPLv2
@@ -54,6 +54,9 @@ find $RPM_BUILD_ROOT -type f -name '*.la' -exec rm -f {} ';'
 %{_libdir}/*.so
 
 %changelog
+* Fri Sep 06 2019 Phil Sutter <psutter@redhat.com> - 1.0.0-10.1
+- Rebuild for inclusion into s390x.
+
 * Mon Mar 11 2019 Phil Sutter - 1.0.0-10
 - Resolves: rhbz#1256215 - double free happened when nfct_helper_free() [...]
 
